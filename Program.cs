@@ -6,16 +6,22 @@ namespace JogoAdivinhacao
     {
         static void Main(string[] args)
         {
-            //Versão 1: Estrutura básica e entrada do usuário
+            //Versão 2: Gerar um número secreto aleatório
             Console.WriteLine("---------------------------");
             Console.WriteLine("Jogo de Adivinhação");
             Console.WriteLine("---------------------------");
 
-            Console.Write("Digite um número: ");
+            Random geradornumero = new Random();
+            int numeroaleatorio = geradornumero.Next(1, 11);
+
+            Console.Write("Digite um número entre 1 a 10: ");
             int numero = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Você digitou o seguinte número: " + numero);
+            Console.WriteLine("Você digitou o seguinte número: " + numero);
+            Console.WriteLine($"O número secreto é: {numeroaleatorio}");
             Console.ReadLine();
+
+            
         }
     }
 }
