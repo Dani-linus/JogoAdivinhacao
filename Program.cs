@@ -6,19 +6,18 @@ namespace JogoAdivinhacao
 {
     internal class Program
     {
-
-
-
         static void Main(string[] args)
         {
-
+            
             int totaltentativa = 0;
             int[] historicoNumeros;
 
             while (true)
             {
 
-                // Armazenar e exibir números já digitados
+                // Armazenar e exibir números já digitados.
+                //Não permitir o uso de números repetidos ao chutar.
+
                 Console.Clear();
                 Console.WriteLine("---------------------------");
                 Console.WriteLine("Jogo de Adivinhação");
@@ -64,37 +63,52 @@ namespace JogoAdivinhacao
                         break;
                     }
                     else
+
+                    Console.Write("Digite um número entre 1 a 5: ");
+                    int numero = Convert.ToInt32(Console.ReadLine());
+
+                    historicoNumeros[tentativa] = numero;
+
+                    if (tentativa == 1)
                     {
-
-                        Console.Write("Digite um número entre 1 a 5: ");
-                        int numero = Convert.ToInt32(Console.ReadLine());
-
-                        historicoNumeros[tentativa] = numero;
-
-                        if (numero == numeroaleatorio)
+                        for (int i = 0; i <= historicoNumeros[tentativa]; i++)
                         {
+            
+                            if (historicoNumeros[i] == numero && numero != numeroaleatorio)
+                            {
+                                Console.WriteLine("O número já foi digitado, por gentileza tentar outro");
+                            }
+                            else
+                            {
+                                if (numero == numeroaleatorio)
+                                {
 
-                            Console.WriteLine("---------------------------");
-                            Console.WriteLine("Parabens, você acertou o número secreto");
-                            Console.WriteLine("---------------------------");
-                            Console.ReadLine();
-                            break;
+                                    Console.WriteLine("---------------------------");
+                                    Console.WriteLine("Parabens, você acertou o número secreto");
+                                    Console.WriteLine("---------------------------");
+
+                                    Console.ReadLine();
+                                    break;
+                                }
+
+                                else if (numeroaleatorio < numero)
+                                {
+                                    Console.WriteLine("---------------------------");
+                                    Console.WriteLine("O número secreto é menor que o número digitado");
+                                    Console.WriteLine("---------------------------");
+
+                                }
+                                else if (numeroaleatorio > numero)
+                                {
+                                    Console.WriteLine("---------------------------");
+                                    Console.WriteLine("O número secreto é maior que o número digitado");
+                                    Console.WriteLine("---------------------------");
+
+                                }
+
+                            }
                         }
 
-                        else if (numeroaleatorio < numero)
-                        {
-                            Console.WriteLine("---------------------------");
-                            Console.WriteLine("O número secreto é menor que o número digitado");
-                            Console.WriteLine("---------------------------");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("---------------------------");
-                            Console.WriteLine("O número secreto é maior que o número digitado");
-                            Console.WriteLine("---------------------------");
-
-                        }
                         Console.WriteLine("Aperte ENTER para continuar...");
                         Console.ReadLine();
                     }              
